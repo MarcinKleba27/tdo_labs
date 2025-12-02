@@ -1,7 +1,18 @@
-name: Hello
-on: workflow_dispatch
+name: Hello example
+
+on: 
+  workflow_dispatch:
+
 jobs:
-  say-hi:
+  first:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello, GitHub Actions!"
+      - name: First job message
+        run: echo "This is the FIRST job!"
+
+  second:
+    runs-on: ubuntu-latest
+    needs: first
+    steps:
+      - name: Second job message
+        run: echo "This is the SECOND job, and it runs ONLY after the first."
